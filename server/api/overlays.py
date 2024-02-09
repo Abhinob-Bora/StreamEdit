@@ -6,17 +6,7 @@ from app import mongo
 overlays_bp = Blueprint('overlays', __name__, url_prefix='/api/overlays')
 
 # Endpoint to create a new overlay
-@overlays_bp.route('/create', methods=['POST'])
-def create_overlay():
-    data = request.json
-    overlay = {
-        'type': data['type'],
-        'content': data['content'],
-        'position': data['position'],
-        'size': data['size']
-    }
-    inserted_id = mongo.db.overlays.insert_one(overlay).inserted_id
-    return jsonify({'message': 'Overlay created successfully', 'overlay_id': str(inserted_id)}), 201
+
 
 # Endpoint to update an existing overlay
 @overlays_bp.route('/update/<overlay_id>', methods=['PUT'])
